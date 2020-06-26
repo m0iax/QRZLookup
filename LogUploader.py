@@ -20,8 +20,7 @@ appName="Log Uploader for JS8Call"
 class UI(Tk):
     
     def doLookupAndDisplay(self, callsign):
-        
-        if callsign:
+        if callsign!=None and callsign!="":
             self.lastLookupCall=callsign
             callxmldata = self.qrz.lookupCallsign(callsign)
             if callxmldata:
@@ -36,7 +35,8 @@ class UI(Tk):
                 self.qrzCity.set(callxmldata.get('addr2'))
                 self.qrzCountry.set(callxmldata.get('land'))
                 self.qrzMgr.set(qslmgr)
-        
+        else :
+            print("skipped")
     def loadSettings(self, settingValues):
         print('Loading settings')
     
@@ -94,11 +94,11 @@ class UI(Tk):
             self.enableQSLButton.configure(bg="red")
             self.enableQSLButton.configure(text="eQSL Upload Disabled")
      
-    def selectedItem(self,event):
-        selectedCallsign = self.callsignListbox.get(self.callsignListbox.curselection())
+    #def selectedItem(self,event):
+     #   selectedCallsign = self.callsignListbox.get(self.callsignListbox.curselection())
         #print(selectedCallsign)
         #self.qrz.lookupCallsign(selectedCallsign)
-        self.doLookupAndDisplay(selectedCallsign)
+      #  self.doLookupAndDisplay(selectedCallsign)
         
     def show_qrzThings(self, frame, controller):
     
@@ -165,7 +165,7 @@ class UI(Tk):
  
     def update_timer(self):
         self.selectedCall=self.udpserver.getSelectedCall()
-        if self.selectedCall!=self.lastLookupCall:
+        if self.selectedCall!=None and self.selectedCall!="" and self.selectedCall!=self.lastLookupCall:
             self.doLookupAndDisplay(self.selectedCall)
 
         self.after(1000, self.update_timer)
