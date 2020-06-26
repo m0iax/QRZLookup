@@ -23,7 +23,7 @@ class QRZLookup(object):
     def __init__(self, userName, password):
         self.userName = userName
         self.password = password
-        print('uname '+self.userName)
+        #print('uname '+self.userName)
         self.sessionKey=None
         self.numretries=0
         urllib3.disable_warnings()
