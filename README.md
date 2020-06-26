@@ -30,23 +30,23 @@ Linux (including Raspberry Pi) and MacOS
 
 run a command prompt, change directory to the installation directory.
 
-cd RealtimeLogUpload
+cd QRZLookup
 
 Before you run it for the first time enter the command: chmod +x adifUploader.py
 install the pre-requisite python modules using the commands:
 
 pip3 install requests
 
-to run the app: ./adifUploader.py
+to run the app: <strong>./UploadADIF.py</strong>
 
 Windows from the command prompt
 
-cd RealTimeLogUpload
+cd QRZLookup
 
 (before running for the first time install the prerequisite modules)
 py -m pip install requests
 
-py -m adifUploader.py
+py -m UploadADIF.py
 
 
 
@@ -67,9 +67,20 @@ username = USERNAME
 password = PASSWORD
 qthnickname =
 
-[SERVICES]
+[SERVICES-AT-STARTUP]
 eqsl = 0
 qrz = 0
+clublog = 0
+hrdlog = 0
+qrzlookup = 1
+
+[SERVICES-INUSE]
+eqsl = 1
+qrz = 1
+clublog = 0
+hrdlog = 0
+qrzlookup = 1
+
 Do not change the format of the file, but update the values APIKEY, USERNAME, PASSWORD with your details, for example
 
 [QRZ.COM]
@@ -80,9 +91,19 @@ username = MyUserName
 password = MyPassword
 qthnickname = MyNickname
 
-[SERVICES]
+[SERVICES-AT-STARTUP]
 eqsl = 0
 qrz = 0
+clublog = 0
+hrdlog = 0
+qrzlookup = 1
+
+[SERVICES-INUSE]
+eqsl = 1
+qrz = 1
+clublog = 0
+hrdlog = 0
+qrzlookup = 1
 Note if you do not use one or the other then you do not need to change the default setting for it. In the services section you can specify which ones you want enabled at startup change the 0 to a 1 if you want is enabled by default when you run the app, leave them at 0 and you will just need to click the button after running.
 NOTE FOR USERS UPDATING TO VERSION SUPPORTING QTH NICKNAME
 
