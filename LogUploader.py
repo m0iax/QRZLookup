@@ -218,7 +218,7 @@ class UI(Tk):
         labelFrame=Frame(self)
         labelFrame.pack()
         
-        aboutLabel = Label(labelFrame,text="M0IAX ADIF Uploader for JS8Call")
+        aboutLabel = Label(labelFrame,text="M0IAX QRZ Lookup for JS8Call 2.2")
         aboutLabel.grid(row=0,column=0, padx=5, pady=5)
         
         if self.upLoader!=None:
