@@ -5,3 +5,5 @@ logs/UploadedADIFs.log
 *.pyc
 OldSettings.py
 OldSettings.py
+loguploader.cfg
+loguploader.cfg

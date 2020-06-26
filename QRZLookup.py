@@ -58,20 +58,12 @@ class QRZLookup(object):
                     print('Max Retries exceeded, unable to upload to qrz')
                 else:    
                     self.lookupCallsign(callsign)
-                
-            #    if retry:
-            #        self._session_key = None
-            #        self._session = None
-            #        return self.callsign(callsign, retry=False)
-            #elif "not found" in errormsg.lower():
-            #    raise CallsignNotFound(errormsg)
-            #raise QRZerror(raw['Session'].get('Error'))
         else:
             stationdata = xmldata.get('Callsign')
             self.numretries = 0
             if stationdata:
                 return stationdata
-        raise Exception("Unexcepcted error in qrz query")
+        #raise Exception("Unexcepcted error in qrz query")
 
 if __name__=="__main__":
     qrz=QRZLookup('','')
