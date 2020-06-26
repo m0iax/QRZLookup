@@ -26,6 +26,16 @@ Install:
 
 clone or download this repo if downlading a .zip file unzip into a directory on your computer.
 
+Install Pythin modules:
+
+<strong>Linux:<strong>
+<br>
+pip3 install xmltodict
+<br>
+<strong>windows:</strong>
+<br>
+py -m pip install xmltodict
+<br>
 Linux (including Raspberry Pi) and MacOS
 
 run a command prompt, change directory to the installation directory.
