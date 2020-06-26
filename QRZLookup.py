@@ -27,7 +27,8 @@ class QRZLookup(object):
         self.sessionKey=None
         self.numretries=0
         urllib3.disable_warnings()
-        self.setSessionKey()
+        if self.userName!="qrzuser":
+            self.setSessionKey()
         
     def getSessionKey(self):
         return self.sessionKey
@@ -35,6 +36,8 @@ class QRZLookup(object):
     def lookupCallsign(self, callsign):
         if self.sessionKey==None:
             self.getSessionKey()
+        if self.userName=="qrzuser":
+            return
         url = """http://xmldata.qrz.com/xml/current/?s={0}&callsign={1}&agent={2}""".format(self.sessionKey, callsign, APPNAME)
         r = self.session.get(url)
         if r.status_code != 200:

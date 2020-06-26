@@ -211,12 +211,14 @@ class ConfigAndSettings():
             config['SERVICES-AT-STARTUP'] = {'eqsl': 0,
                                 'qrz': 0,
                                 'clublog': 0,
-                                'hrdlog': 0
+                                'hrdlog': 0,
+                                'qrzlookup': 0
                                 }  
             config['SERVICES-INUSE'] = {'eqsl': 1,
                                 'qrz': 1,
                                 'clublog': 0,
-                                'hrdlog': 0
+                                'hrdlog': 0,
+                                'qrzlookup': 1
                                 }  
             
             with open(configFileName, 'w') as configfile:

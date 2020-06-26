@@ -1,0 +1,7 @@
+
+loguploader.cfg
+logs/2020-06-26-OffLine.log
+logs/UploadedADIFs.log
+*.pyc
+OldSettings.py
+OldSettings.py
