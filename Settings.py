@@ -147,7 +147,7 @@ class ConfigAndSettings():
             
             self.isQRZLookupInUse=int(config.get('SERVICES-INUSE','qrzlookup'))
             self.qrzLookupInUse=False
-            print(self.isQRZLookupInUse)
+            #print(self.isQRZLookupInUse)
             if self.isQRZLookupInUse==1:
                 self.qrzLookupInUse=True
     
@@ -229,4 +229,4 @@ class ConfigAndSettings():
 if __name__=="__main__":
     config = ConfigAndSettings()
    # config.setQRZUserName("M6FLJ")
-    print(config.getQRZUserName())
+    #print(config.getQRZUserName())
