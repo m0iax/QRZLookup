@@ -28,7 +28,7 @@ clone or download this repo if downlading a .zip file unzip into a directory on 
 
 Install Pythin modules:
 
-<strong>Linux:<strong>
+<strong>Linux:</strong>
 <br>
 pip3 install xmltodict
 <br>
