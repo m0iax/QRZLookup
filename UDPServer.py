@@ -8,38 +8,17 @@ import json
 import time
 import configparser
 import os
-#import configAndSettings
+import UploadADIF
+import Settings
 
 TYPE_GET_CALL_ACTIVITY="RX.GET_CALL_ACTIVITY"
 TYPE_CALL_ACTIVITY='RX.CALL_ACTIVITY'
 
-def createConfigFile(configFileName):
-    #cretes the config file if it does not exist
-    if not os.path.isfile(configFileName):
-            
-        config = configparser.ConfigParser()
-        config['NETWORK'] = {'serverip': '127.0.0.1',
-                             'serverudpport': 2242,
-                             'servertcpport':2442
-                            }
-            
-        with open(configFileName, 'w') as configfile:
-            config.write(configfile)
-            configfile.close()
-    
-
-configfilename="./js8call.cfg"
-createConfigFile(configfilename)
-
-if os.path.isfile(configfilename):
-    config = configparser.ConfigParser()
-    config.read(configfilename)
-
-    serverip = config.get('NETWORK','serverip')
-    serverport = int(config.get('NETWORK', 'serverudpport'))
+config = Settings.ConfigAndSettings()
+serverip = config.getJS8CallIP()
+serverport = config.getUDPPort()
 
 listen = (serverip, serverport)
-
 
 def from_message(content):
     try:
@@ -63,6 +42,7 @@ class Server(threading.Thread):
     def __init__(self, uploadadif):
         t = threading.Thread.__init__(self)
 
+
         if uploadadif==None:
             self.uploadADIF = UploadADIF.UploadServer()
         else:
@@ -82,7 +62,7 @@ class Server(threading.Thread):
         return self.selectedCall
         
     def checkForSelectedCallsign(self,params):
-        #print(params.get('SELECTED',''))
+        #print(params)
         freq=params.get('DIAL','')
         if freq!=None:
             self.selectedCall=params.get('SELECTED', '')
@@ -106,7 +86,6 @@ class Server(threading.Thread):
             self.listrequested=True
         
         self.checkForSelectedCallsign(params)
-
         if not typ:
             return
         
@@ -143,8 +122,6 @@ class Server(threading.Thread):
             while self.listening:
                 content, addr = self.sock.recvfrom(65500)
                 
-                #print('incoming message:', ':'.join(map(str, addr)))
-
                 try:
                     message = json.loads(content)
                 except ValueError:
@@ -168,8 +145,6 @@ class Server(threading.Thread):
 
 
 if __name__ == "__main__":
-    #def main():
     server = Server()
     server.start()
-    #s.listen()
-
+ 

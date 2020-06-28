@@ -8,3 +8,5 @@ OldSettings.py
 loguploader.cfg
 loguploader.cfg
 JS8CallAPIs.cpp
+TCPClient.py
+logs/2020-06-28-OffLine.log

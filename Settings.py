@@ -9,7 +9,10 @@ class ConfigAndSettings():
         self.LOGFILENAME='./REALTIMEADIFUPLOAD.log'
         self.configfilename="./loguploader.cfg"
         self.createConfigFile(self.configfilename)
-        
+
+        self.js8callIP=None
+        self.tcpPort=None
+        self.udpPort=None       
         self.qrzAPIKey= None
         self.qrzUserName=None
         self.qrzPassword=None
@@ -103,15 +106,27 @@ class ConfigAndSettings():
         self.clubInUse=value
     def getClubLogInUse(self):
         return self.clubInUse
-    
-    
+    def getJS8CallIP(self):
+        return self.js8callIP
+    def setJS8CallIP(self, value):
+        self.js8callIP=value
+    def getUDPPort(self):
+        return self.udpPort
+    def setUDPPort(self, value):
+        self.udpPort=value
+    def getTCPPort(self):
+        return self.tcpPort
+    def setTCPPort(self, value):
+        self.tcpPort=value
+
     def loadSettings(self,configfilename):
         self.createConfigFile(configfilename)
 
         if os.path.isfile(configfilename):
             config = configparser.ConfigParser()
             config.read(configfilename)
-        
+
+            
             self.qrzAPIKey= config.get('QRZ.COM', 'apikey')
             self.qrzUserName=config.get('QRZ.COM', 'username')
             self.qrzPassword=config.get('QRZ.COM', 'password')
@@ -150,7 +165,29 @@ class ConfigAndSettings():
             #print(self.isQRZLookupInUse)
             if self.isQRZLookupInUse==1:
                 self.qrzLookupInUse=True
-    
+
+            try:
+                self.js8callIP=config.get('JS8CALL', 'serverip')
+
+                self.udpPort=int(config.get('JS8CALL', 'serverudpport'))
+                self.tcpPort=int(config.get('JS8CALL', 'servertcpport'))
+
+            except configparser.NoSectionError:
+                
+                #set defaults
+                self.js8callIP='127.0.0.1'
+                self.udpPort=2242
+                self.tcpPort=2442
+
+                config_update = configparser.RawConfigParser()
+                config_update.add_section('JS8CALL')
+                config_update.set('JS8CALL', 'serverudpport', self.udpPort)
+                config_update.set('JS8CALL', 'servertcpport', self.tcpPort)
+                config_update.set('JS8CALL', 'serverip', self.js8callIP)
+
+                with open(configfilename, 'a') as f:
+                    config_update.write(f)
+
     def saveConfigFile(self,configFileName):
                 
         config = configparser.ConfigParser()
@@ -182,7 +219,11 @@ class ConfigAndSettings():
                             'hrdlog': 0,
                             'qrzlookup': 0
                             }  
-        
+        config['JS8CALL'] = {'serverip': self.js8callIP,
+                             'serverudpport': self.udpPort,
+                             'servertcpport': self.tcpPort
+                            }
+
         with open(configFileName, 'w') as configfile:
             config.write(configfile)
             configfile.close()
@@ -220,7 +261,11 @@ class ConfigAndSettings():
                                 'hrdlog': 0,
                                 'qrzlookup': 1
                                 }  
-            
+            config['JS8CALL'] = {'serverip': '127.0.0.1',
+                             'serverudpport': 2242,
+                             'servertcpport':2442
+                            }
+
             with open(configFileName, 'w') as configfile:
                 config.write(configfile)
                 configfile.close()
