@@ -55,8 +55,6 @@ Windows from the command prompt
 
 cd QRZLookup
 <br>
-(before running for the first time install the prerequisite modules)<br>
-py -m pip install requests
 <br>
 py -m QRZLookup.py
 
