@@ -38,6 +38,7 @@ pip3 install requests
 py -m pip install xmltodict<br>
 py -m pip install requests
 <br>
+<br>
 Linux (including Ras
 pberry Pi) and MacOS
 
@@ -53,10 +54,10 @@ to run the app: <strong>./QRZLookup.py</strong>
 Windows from the command prompt
 
 cd QRZLookup
-
-(before running for the first time install the prerequisite modules)
+<br>
+(before running for the first time install the prerequisite modules)<br>
 py -m pip install requests
-
+<br>
 py -m QRZLookup.py
 
 
