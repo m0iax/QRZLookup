@@ -30,32 +30,32 @@ Install Pythin modules:
 
 <strong>Linux:</strong>
 <br>
-pip3 install xmltodict
+pip3 install xmltodict<br>
+pip3 install requests
 <br>
 <strong>windows:</strong>
 <br>
-py -m pip install xmltodict
+py -m pip install xmltodict<br>
+py -m pip install requests
 <br>
-Linux (including Raspberry Pi) and MacOS
+<br>
+Linux (including Ras
+pberry Pi) and MacOS
 
 run a command prompt, change directory to the installation directory.
 
 cd QRZLookup
+(before running for the fisr time enter the following command:)
+chmod +x QRZLookup.py<br>
 
-Before you run it for the first time enter the command: chmod +x adifUploader.py
-install the pre-requisite python modules using the commands:
-
-pip3 install requests
 
 to run the app: <strong>./QRZLookup.py</strong>
 
 Windows from the command prompt
 
 cd QRZLookup
-
-(before running for the first time install the prerequisite modules)
-py -m pip install requests
-
+<br>
+<br>
 py -m QRZLookup.py
 
 
