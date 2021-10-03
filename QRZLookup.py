@@ -32,7 +32,11 @@ class UI(Tk):
                 state=callxmldata.get('state')
                 if state==None:
                     state=''
-                    
+                    self.stateLabel.grid_remove() # hide label
+                    self.stateTitleLabel.grid_remove() #hide label
+                else:
+                    self.stateLabel.grid() # display the label
+                    self.stateTitleLabel.grid() # display the label
 
                 self.qrzCall.set(callxmldata.get('call'))
                 self.qrzFName.set(callxmldata.get('fname'))
