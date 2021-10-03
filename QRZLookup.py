@@ -28,11 +28,17 @@ class UI(Tk):
                 qslmgr=callxmldata.get('qslmgr')
                 if qslmgr==None:
                     qslmgr=''
+                # added state to data pulled from xmldata and if set to None make it blank
+                state=callxmldata.get('state')
+                if state==None:
+                    state=''
+                    
 
                 self.qrzCall.set(callxmldata.get('call'))
                 self.qrzFName.set(callxmldata.get('fname'))
                 self.qrzGrid.set(callxmldata.get('grid'))
                 self.qrzCity.set(callxmldata.get('addr2'))
+                self.qrzState.set(state)  # put state data in qrzState variable
                 self.qrzCountry.set(callxmldata.get('land'))
                 self.qrzMgr.set(qslmgr)
         else :
@@ -139,18 +145,27 @@ class UI(Tk):
             
             self.cityLabel=Label(frame,textvariable=self.qrzCity)
             self.cityLabel.grid(row=3, column=1, padx=5, pady=py, stick='w')
+
+            # create the labels to display State add to all row numbers after this to account for this new row
+            # placed directly after state. In the US the state is always listed immeadiatly after the city
+
+            self.stateTitleLabel=Label(frame,text="State",relief=RAISED)
+            self.stateTitleLabel.grid(row=4, column=0, padx=5, pady=py, stick='e')
+
+            self.stateLabel=Label(frame,textvariable=self.qrzState)
+            self.stateLabel.grid(row=4, column=1, padx=5, pady=py, stick='w')
             
             self.countryTitleLabel=Label(frame,text="Country",relief=RAISED)
-            self.countryTitleLabel.grid(row=4, column=0, padx=5, pady=py, stick='e')
+            self.countryTitleLabel.grid(row=5, column=0, padx=5, pady=py, stick='e')
             
             self.countryLabel=Label(frame,textvariable=self.qrzCountry)
-            self.countryLabel.grid(row=4, column=1, padx=5, pady=py, stick='w')
+            self.countryLabel.grid(row=5, column=1, padx=5, pady=py, stick='w')
             
             self.qslTitleLabel=Label(frame,text="QSL Mgr",relief=RAISED)
-            self.qslTitleLabel.grid(row=5, column=0, padx=5, pady=py, stick='e')
+            self.qslTitleLabel.grid(row=6, column=0, padx=5, pady=py, stick='e')
             
             self.qslLabel=Label(frame,width=20,textvariable=self.qrzMgr,wraplength=150, justify=CENTER)
-            self.qslLabel.grid(row=5, column=1, padx=5, pady=py)
+            self.qslLabel.grid(row=6, column=1, padx=5, pady=py)
         
     def show_buttons(self, frame, controller):
 
@@ -180,6 +195,7 @@ class UI(Tk):
         self.qrzFName = StringVar()
         self.qrzGrid = StringVar()
         self.qrzCity = StringVar()
+        self.qrzState = StringVar()         #added qrzState StringVar() to store state in. 
         self.qrzCountry = StringVar()
         self.qrzMgr = StringVar()
         self.selectedCall=None
